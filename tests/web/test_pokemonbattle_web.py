@@ -5,8 +5,17 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 URL = 'https://pokemonbattle-stage.ru/'
+
+USER_LOGIN = os.getenv('USER_LOGIN')
+USER_PASS = os.getenv('USER_PASS')
+INCORRECT_LOGIN = os.getenv('INCORRECT_LOGIN')
+INCORRECT_PASS = os.getenv('INCORRECT_PASS')
 
 
 def test_positive_login(browser):
@@ -18,11 +27,11 @@ def test_positive_login(browser):
         by=By.CSS_SELECTOR, value=('[class*="k_form_f_email"]')
     )
     email_input.click()
-    email_input.send_keys('USER_LOGIN')
+    email_input.send_keys(USER_LOGIN)
 
     password_input = browser.find_element(by=By.ID, value='k_password')
     password_input.click()
-    password_input.send_keys('USER_PASS')
+    password_input.send_keys(USER_PASS)
 
     button = browser.find_element(
         by=By.CSS_SELECTOR, value=('[class*="k_form_send_auth"]')
@@ -44,11 +53,11 @@ def test_positive_login(browser):
 
 
 CASES = [
-    ('1', 'INCORRECT_LOGIN', 'USER_PASS', ['Введите корректную почту']),
-    ('2', 'USER_LOGIN', 'INCORRECT_PASS', ['Неверные логин или пароль']),
-    ('3', 'INCORRECT_LOGIN', 'USER_PASS', ['Введите корректную почту']),
-    ('4', '', 'USER_LOGIN', ['Введите почту']),
-    ('5', 'USER_LOGIN', '', ['Введите пароль']),
+    ('1', INCORRECT_LOGIN, USER_PASS, ['Введите корректную почту']),
+    ('2', USER_LOGIN, INCORRECT_PASS, ['Неверные логин или пароль']),
+    ('3', INCORRECT_LOGIN, USER_PASS, ['Введите корректную почту']),
+    ('4', '', USER_LOGIN, ['Введите почту']),
+    ('5', USER_LOGIN, '', ['Введите пароль']),
 ]
 
 
