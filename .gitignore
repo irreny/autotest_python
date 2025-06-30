@@ -1,0 +1,10 @@
+.pytest_cache
+.vscode
+__pycache__/
+__pycache__
+
+# Environments
+.env
+.venv
+env/
+venv/
