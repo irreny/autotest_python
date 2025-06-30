@@ -1,6 +1,5 @@
 import requests
 
-
 URL = 'https://api.pokemonbattle.ru/v2'
 TOKEN = '1d8c83ba2c004d5fd2c14f96b5f62d0e'
 HEADER = {

@@ -1,12 +1,11 @@
-import pytest
+import os
 
+import pytest
+from dotenv import load_dotenv
 from loguru import logger
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-from dotenv import load_dotenv
-import os
+from selenium.webdriver.support.wait import WebDriverWait
 
 load_dotenv()
 
