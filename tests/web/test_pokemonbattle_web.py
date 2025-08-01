@@ -9,7 +9,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 load_dotenv()
 
-URL = 'https://pokemonbattle-stage.ru/'
+URL_STAGE = os.getenv('URL_STAGE')
 
 USER_LOGIN = os.getenv('USER_LOGIN')
 USER_PASS = os.getenv('USER_PASS')
@@ -20,7 +20,7 @@ INCORRECT_PASS = os.getenv('INCORRECT_PASS')
 def test_positive_login(browser):
     """Позитивная проверка авторизации."""
 
-    browser.get(URL)
+    browser.get(URL_STAGE)
 
     email_input = browser.find_element(
         by=By.CSS_SELECTOR, value=('[class*="k_form_f_email"]')
@@ -41,7 +41,7 @@ def test_positive_login(browser):
         browser,
         timeout=15,
         poll_frequency=7
-    ).until(EC.url_to_be(URL))
+    ).until(EC.url_to_be(URL_STAGE))
 
     trainer_id = browser.find_element(
         by=By.CSS_SELECTOR,
@@ -65,7 +65,7 @@ def test_negative_login(case_number, email, password, alerts, browser):
     """Негативная проверка авторизации."""
 
     logger.info(f'Case : {case_number}')
-    browser.get(URL)
+    browser.get(URL_STAGE)
 
     email_input = browser.find_element(
         by=By.CSS_SELECTOR, value=('[class*="k_form_f_email"]')

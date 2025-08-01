@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-URL = 'https://api.pokemonbattle.ru/v2'
+URL = os.getenv('URL')
 TOKEN = os.getenv('TRAINER_TOKEN_PROD')
 HEADER = {
     'Content-Type': 'application/json',
@@ -31,4 +31,6 @@ def test_trainer_name(key, value):
     value (str): Ожидаемое значение для указанного ключа.
     """
     response = requests.get(url=f'{URL}/trainers/{TRAINER_ID}')
-    assert response.json()[key] == value
+    json_resp = response.json()
+    assert key in json_resp, f"Ключ '{key}' отсутствует в ответе: {json_resp}"
+    assert json_resp[key] == value
