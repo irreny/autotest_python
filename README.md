@@ -43,6 +43,9 @@ USER_PASS=your_password_here
 
 INCORRECT_LOGIN=your_fall_email@example.com
 INCORRECT_PASS=your_fall_password_here
+
+URL=your_url
+URL_STAGE=your_url_stage
 ```
 
 ### ✅ Запуск тестов
