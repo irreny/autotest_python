@@ -30,7 +30,7 @@ def test_trainer_name(key, value):
     key (str): Ключ, который проверяется в JSON-ответе.
     value (str): Ожидаемое значение для указанного ключа.
     """
-    response = requests.get(url=f'{URL}/trainers/{TRAINER_ID}')
+    response = requests.get(url=f'{URL}/trainers/38037')
     json_resp = response.json()
     assert key in json_resp, f"Ключ '{key}' отсутствует в ответе: {json_resp}"
     assert json_resp[key] == value
