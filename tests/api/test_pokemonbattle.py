@@ -14,12 +14,24 @@ HEADER = {
     'trainer_token': TOKEN
     }
 TRAINER_ID = os.getenv('TRAINER_ID_PROD')
+BODY = {
+    "name": "irreny",
+    "city": "Tokyo"
+}
 
 
 def test_status_code():
     """GET-запрос к ресурсу /trainers возвращает HTTP-статус 200 (OK)."""
     response = requests.get(url=f'{URL}/trainers')
     assert response.status_code == 200
+
+
+@pytest.mark.parametrize('key, value', [('id', '38037')])
+def test_put_trainer(key, value):
+    """PUT-запрос к ресурсу /trainers возвращает HTTP-статус 200 (OK)."""
+    response = requests.put(url=f'{URL}/trainers', headers=HEADER, json=BODY)
+    assert response.status_code == 200
+    assert response.json()[key] == value
 
 
 @pytest.mark.parametrize('key, value', [('trainer_name', 'irreny')])

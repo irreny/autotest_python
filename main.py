@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-URL = 'https://api.pokemonbattle.ru/v2'
+URL = os.getenv('URL')
 TOKEN = os.getenv('TRAINER_TOKEN_PROD')
 HEADER = {
     'Content-Type': 'application/json',
